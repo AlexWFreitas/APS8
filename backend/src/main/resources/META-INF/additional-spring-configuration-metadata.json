@@ -1,0 +1,10 @@
+{"properties": [{
+  "name": "mentrical.app.jwtExpirationMs",
+  "type": "java.lang.String",
+  "description": "Expiration time for the JWT Token."
+},
+{
+  "name": "mentrical.app.jwtSecret",
+  "type": "java.lang.String",
+  "description": "Secret Key to use when encoding the JWT Token."
+}]}
