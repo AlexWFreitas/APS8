@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
@@ -38,6 +39,10 @@ public class User {
 	private String email;
 
 	@NotBlank
+	@Size(max = 100)
+	private String fullName;
+
+	@NotBlank
 	@Size(max = 120)
 	private String password;
 
@@ -47,13 +52,17 @@ public class User {
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
+	@OneToMany(mappedBy="creator")
+	private Set<Report> reports;
+
 	public User() {
 	}
 
-	public User(String username, String email, String password) {
+	public User(String username, String email, String password, String fullName) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.fullName = fullName;
 	}
 
 	public Long getId() {
@@ -95,4 +104,13 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+	public String getFullName() {
+		return this.fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	
 }
