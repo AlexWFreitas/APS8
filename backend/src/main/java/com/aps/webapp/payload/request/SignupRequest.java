@@ -58,7 +58,6 @@ public class SignupRequest {
       this.role = role;
     }
 
-
     public String getFullName() {
         return this.fullName;
     }
