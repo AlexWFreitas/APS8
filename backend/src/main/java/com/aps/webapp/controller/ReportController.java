@@ -6,17 +6,18 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.aps.webapp.models.Report;
-import com.aps.webapp.models.User;
-import com.aps.webapp.models.DTO.ReportDTO;
 import com.aps.webapp.payload.request.CreateReportRequest;
 import com.aps.webapp.payload.response.MessageResponse;
+import com.aps.webapp.payload.response.ReportResponse;
 import com.aps.webapp.repository.ReportRepository;
 import com.aps.webapp.repository.UserRepository;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,13 +38,13 @@ public class ReportController {
 
 	@GetMapping
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public List<ReportDTO> GetAllReports() {
+	public List<ReportResponse> GetAllReports() {
 		var reports = reportRepository.findAll();
 		
-		List<ReportDTO> listReportDTO = new ArrayList<>();
+		List<ReportResponse> listReportDTO = new ArrayList<>();
 
 		reports.forEach(report -> {
-			var reportDTO = new ReportDTO(report.getId(), report.getReportTitle(), report.getReportMessage(), report.getLocation(), report.getCreateDate(), report.getCreator().getId(), report.getCreator().getFullName());
+			var reportDTO = new ReportResponse(report.getId(), report.getReportTitle(), report.getReportMessage(), report.getLocation(), report.getCreateDate(), report.getCreator().getId(), report.getCreator().getFullName());
 			listReportDTO.add(reportDTO);
 		});
 
@@ -68,5 +69,14 @@ public class ReportController {
 
 		return ResponseEntity.ok(new MessageResponse("Report registered successfully!"));
 		
+	}
+
+	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> deleteReport(@PathVariable Long id)
+	{
+		reportRepository.deleteById(id);
+
+		return ResponseEntity.ok(new MessageResponse("Report deleted successfully!"));
 	}
 }

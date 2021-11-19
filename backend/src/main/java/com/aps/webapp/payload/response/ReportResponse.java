@@ -1,8 +1,8 @@
-package com.aps.webapp.models.DTO;
+package com.aps.webapp.payload.response;
 
 import java.time.LocalDateTime;
 
-public class ReportDTO {
+public class ReportResponse {
 
 	private Long id;
 
@@ -18,7 +18,7 @@ public class ReportDTO {
 
 	private String creatorName;
 
-	public ReportDTO (Long id, String reportTitle, String reportMessage, String location, LocalDateTime createdDate, Long idUser, String creatorName) {
+	public ReportResponse (Long id, String reportTitle, String reportMessage, String location, LocalDateTime createdDate, Long idUser, String creatorName) {
 		this.id = id;
 		this.reportTitle = reportTitle;
 		this.reportMessage = reportMessage;

@@ -5,13 +5,13 @@ import { Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./components/User/Login";
+import Register from "./components/User/Register";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
-import FireReports from "./components/FireReports";
-import InsertFireReport from "./components/InsertFireReport";
-import AdminPanel from "./components/AdminPanel";
+import Profile from "./components/User/Profile";
+import FireReports from "./components/FireReport/FireReports";
+import InsertFireReport from "./components/FireReport/InsertFireReport";
+import FireReportView from "./components/FireReport/FireReportView";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -67,14 +67,6 @@ const App = () => {
               </Link>
             </li>
 
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Administração
-                </Link>
-              </li>
-            )}
-
             {currentUser && (
               <>
                 <li className="nav-item">
@@ -121,15 +113,15 @@ const App = () => {
           )}
         </nav>
 
-        <div className="container mt-3">
+        <div>
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/reports" component={FireReports} />
-            <Route exact path="/admin" component={AdminPanel} />
             <Route exact path="/reports/insert" component={InsertFireReport} />
+            <Route exact path="/reports/:id/" component={FireReportView} />
           </Switch>
         </div>
 

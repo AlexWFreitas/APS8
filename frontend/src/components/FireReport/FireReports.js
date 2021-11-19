@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Table } from 'react-bootstrap';
 
-import UserService from "../services/user.service";
-import EventBus from "../common/EventBus";
-import ReportService from "../services/report.service";
-import TableRow from "./FireReport/TableRow";
+import UserService from "../../services/user.service";
+import EventBus from "../../common/EventBus";
+import ReportService from "../../services/report.service";
+import TableRow from "./TableRow";
 
 const FireReports = () => {
   const [content, setContent] = useState("");

@@ -4,13 +4,13 @@ import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import store from "../store";
+import store from "../../store";
 
-import UserService from "../services/user.service";
+import UserService from "../../services/user.service";
 
-import EventBus from "../common/EventBus";
+import EventBus from "../../common/EventBus";
 
-import { register } from "../actions/report";
+import { register } from "../../actions/report";
 
 const required = (value) => {
 	if (!value) {
