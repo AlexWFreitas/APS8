@@ -51,7 +51,7 @@ const InsertFireReport = () => {
 
 	const form = useRef();
 	const checkBtn = useRef();
-	const idUser = store.getState().auth.user.id;
+	const [idUser, setIdUser] = useState(useSelector((state) => state.auth.user.id))
 	const [location, setLocation] = useState("")
 	const [title, setTitle] = useState("");
 	const [reportContent, setReportContent] = useState("");
