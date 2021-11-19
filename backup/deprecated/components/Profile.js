@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -17,7 +18,8 @@ const Profile = () => {
         </h3>
       </header>
       <p>
-        <strong>Full Name:</strong> {currentUser.fullName}
+        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
+        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
       </p>
       <p>
         <strong>Id:</strong> {currentUser.id}
@@ -25,7 +27,7 @@ const Profile = () => {
       <p>
         <strong>Email:</strong> {currentUser.email}
       </p>
-      <strong>Roles Defined:</strong>
+      <strong>Authorities:</strong>
       <ul>
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
@@ -35,3 +37,4 @@ const Profile = () => {
 };
 
 export default Profile;
+*/

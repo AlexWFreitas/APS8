@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+
 @Entity
 @Table( name = "reports" )
 public class Report {
@@ -37,12 +38,16 @@ public class Report {
 				nullable=false)
 	private User creator;
 
-	public Report(String reportMessage, String location, User creator) {
+	private Report() {};
+
+	public Report (String reportTitle, String reportMessage, String location, User creator) {
+		this.reportTitle = reportTitle;
 		this.reportMessage = reportMessage;
 		this.location = location;
 		this.createDate = LocalDateTime.now();
 		this.creator = creator;
 	}
+
 	public Long getId() {
 		return this.id;
 	}

@@ -8,6 +8,8 @@ import { isEmail } from "validator";
 
 import { register } from "../actions/auth";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const required = (value) => {
   if (!value) {
     return (
@@ -160,7 +162,7 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
+                <button className="btn btn-primary btn-block mt-2">Sign Up</button>
               </div>
             </div>
           )}
