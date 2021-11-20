@@ -8,12 +8,12 @@ const TableRow = (props) => {
 	let date = new Date(dateParse);
 
 	return (
-	<tr>
-		<td>{props.report.id}</td>
-		<td><Link to={`/reports/${props.report.id}`}>{props.report.reportTitle}</Link></td>
-		<td>{props.report.creatorName}</td>
-		<td>{(date.getUTCMonth() + 1 )+ "/" + date.getUTCDate()  + "/" + date.getUTCFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2)}</td>
-	</tr>
+		<tr>
+			<td><Link to={`/reports/${props.report.id}`} className="text-reset text-decoration-none">{props.report.id}</Link></td>
+			<td><Link to={`/reports/${props.report.id}`} className="text-reset text-decoration-none">{props.report.reportTitle}</Link></td>
+			<td><Link to={`/reports/${props.report.id}`} className="text-reset text-decoration-none">{props.report.creatorName}</Link></td>
+			<td><Link to={`/reports/${props.report.id}`} className="text-reset text-decoration-none">{(date.getUTCMonth() + 1 )+ "/" + date.getUTCDate()  + "/" + date.getUTCFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2)}</Link></td>
+		</tr>
 	)
 }
 

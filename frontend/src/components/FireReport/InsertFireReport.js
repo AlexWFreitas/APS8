@@ -4,7 +4,6 @@ import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import store from "../../store";
 
 import UserService from "../../services/user.service";
 
@@ -51,8 +50,8 @@ const InsertFireReport = () => {
 
 	const form = useRef();
 	const checkBtn = useRef();
-	const [idUser, setIdUser] = useState(useSelector((state) => state.auth.user.id))
-	const [location, setLocation] = useState("")
+	const [idUser, setIdUser] = useState(useSelector((state) => state.auth.user.id));
+	const [location, setLocation] = useState("");
 	const [title, setTitle] = useState("");
 	const [reportContent, setReportContent] = useState("");
 	const [successful, setSuccessful] = useState(false);
