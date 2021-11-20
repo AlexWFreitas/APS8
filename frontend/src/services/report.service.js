@@ -23,7 +23,17 @@ const PostReport = (reportTitle, reportContent, location, idUser) => {
 	);
 };
 
+const GetReport = (id) => {
+	return axios.get(API_URL + `${id}`, 
+		{ 
+			headers: authHeader() 
+		}
+	);
+
+}
+
 export default {
   GetReports,
-  PostReport
+  PostReport,
+  GetReport
 };

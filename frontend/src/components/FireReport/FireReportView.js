@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
+import ReportService from "../../services/report.service";
 
 const FireReportView = (props) => {
 	const [content, setContent] = useState("");
+	const [report, setReport] = useState("");
+	const { id } = useParams();
 
 	useEffect(() => {
 		UserService.getUserBoard().then(
@@ -27,6 +31,29 @@ const FireReportView = (props) => {
 			}
 		);
 	}, []);
+
+	
+	useEffect(() => {
+		ReportService.GetReport(id).then(
+		  (response) => {
+			setReport(response.data);
+		  },
+		  (error) => {
+			const _content =
+			  (error.response &&
+				error.response.data &&
+				error.response.data.message) ||
+			  error.message ||
+			  error.toString();
+	
+			setContent(_content);
+	
+			if (error.response && error.response.status === 401) {
+			  EventBus.dispatch("logout");
+			}
+		  }
+		);
+	  }, []);
 	
 	if (content != "Authenticated")
 	{
@@ -40,20 +67,21 @@ const FireReportView = (props) => {
 	}
 
 	return (
-		<div class="card text-center">
-			<div class="card-header">
-				Featured
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">Special title treatment</h5>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-			<div class="card-footer text-muted">
-				2 days ago
+		<div className="container">
+			<div class="card-large" style={{ marginTop: "2rem" }}>
+				<div class="card-header">
+					{report.location}
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{report.reportTitle}</h5>
+					<p class="card-text">{report.reportMessage}</p>
+					<p>Criado por {report.creatorName}</p>
+				</div>
+				<div class="card-footer text-muted">
+					{report.createdDate}
+				</div>
 			</div>
 		</div>
-
 	)
 }
 

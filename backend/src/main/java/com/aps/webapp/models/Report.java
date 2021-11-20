@@ -2,6 +2,7 @@ package com.aps.webapp.models;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Report {
 	private String reportTitle;
 
 	@NotBlank
+	@Column(length = 4000)
 	private String reportMessage;
 
 	@NotBlank

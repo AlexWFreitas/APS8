@@ -51,6 +51,27 @@ public class ReportController {
 		return listReportDTO;
 	}
 
+	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	public ReportResponse GetReportById(@PathVariable Long id) {
+
+		var report = reportRepository.findById(id).get();
+		
+		if (report != null)
+		{
+			var reportResponse = new ReportResponse(report.getId(), 
+													report.getReportTitle(), 
+													report.getReportMessage(), 
+													report.getLocation(), 
+													report.getCreateDate(), 
+													report.getCreator().getId(), 
+													report.getCreator().getFullName());
+			
+			return reportResponse;
+		}	
+		else return null;
+	}
+
 	@PostMapping
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> createReport(@Valid @RequestBody CreateReportRequest createReportRequest) {
