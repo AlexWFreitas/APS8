@@ -6,6 +6,7 @@ import EventBus from "../../common/EventBus";
 import ReportService from "../../services/report.service";
 
 const FireReportView = (props) => {
+	
 	const [content, setContent] = useState("");
 	const [report, setReport] = useState("");
 	const { id } = useParams();

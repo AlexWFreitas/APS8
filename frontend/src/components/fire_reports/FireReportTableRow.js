@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const TableRow = (props) => {
+const FireReportTableRow = (props) => {
 
 	let dateString = props.report.createdDate;
 	let dateParse = Date.parse(dateString);
@@ -17,4 +17,4 @@ const TableRow = (props) => {
 	)
 }
 
-export default TableRow;
+export default FireReportTableRow;

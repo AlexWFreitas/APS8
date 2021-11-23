@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("api/reports/")
+@RequestMapping("api/reports")
 public class ReportController {
 
 	private final ReportRepository reportRepository;
@@ -52,7 +52,7 @@ public class ReportController {
 		return listReportDTO;
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ReportResponse GetReportById(@PathVariable Long id) {
 
@@ -73,7 +73,7 @@ public class ReportController {
 		else return null;
 	}
 
-	@PutMapping(value="/{id}")	
+	@PutMapping(value="{id}")	
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public Report updateReport(@PathVariable Long id, @RequestBody Report report) {
 		report.setId(id);
@@ -100,12 +100,13 @@ public class ReportController {
 		
 	}
 
-	@DeleteMapping("/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping("{id}")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> deleteReport(@PathVariable Long id)
 	{
 		reportRepository.deleteById(id);
 
 		return ResponseEntity.ok(new MessageResponse("Report deleted successfully!"));
 	}
+
 }

@@ -5,13 +5,12 @@ import { Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import Login from "./components/User/Login";
-import Register from "./components/User/Register";
-import Home from "./components/Home";
-import Profile from "./components/User/Profile";
-import FireReports from "./components/FireReport/FireReports";
-import InsertFireReport from "./components/FireReport/InsertFireReport";
-import FireReportView from "./components/FireReport/FireReportView";
+import Login from "./pages/users/Login";
+import Register from "./pages/users/Register";
+import Home from "./pages/Home";
+import Profile from "./pages/users/Profile";
+import FireReports from "./pages/fire_reports/FireReports";
+import InsertFireReport from "./pages/fire_reports/InsertFireReport";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -38,6 +37,7 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
+
     if (currentUser) {
       setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
     } else {
@@ -121,7 +121,6 @@ const App = () => {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/reports" component={FireReports} />
             <Route exact path="/reports/insert" component={InsertFireReport} />
-            <Route exact path="/reports/:id/" component={FireReportView} />
           </Switch>
         </div>
 
