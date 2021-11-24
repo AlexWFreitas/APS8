@@ -13,6 +13,6 @@ Usuários do sistema fazem relatos sobre incêndios.
 
 Todos os usuários podem postar relatos.
 
-# Front end utiliza Axios para fazer requests sobre o servidor back end que disponibiliza APIs do tipo REST para poder manipular os dados.
-# Possui Sistema de Autenticação de usuário por Login de Usuário com Token do tipo JWT 
-# Sistema de Autorização através do uso de Spring Security com UserDetails + Authorities.
+### Front end utiliza Axios para fazer requests sobre o servidor back end que disponibiliza APIs do tipo REST para poder manipular os dados.
+### Possui Sistema de Autenticação de usuário por Login de Usuário com Token do tipo JWT 
+### Sistema de Autorização através do uso de Spring Security com UserDetails + Authorities.
