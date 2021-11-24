@@ -3,7 +3,7 @@ Repositório da APS do Oitavo Semestre
 
 Protótipo de Sistema Distribuído feito em Spring Boot ( Java ) + React com Redux ( JavaScript ) + H2 Database ( Database em Memória ) + Webpack ( Create-React-App com Template Redux )
 
-Possuí três entidades ( User, Role, Report ) com relacionamentos.
+Possui três entidades ( User, Role, Report ) com relacionamentos.
 
 Demonstração de CRUD e conceito de Sistema Distribuído através de comunicação através de APIs.
 
