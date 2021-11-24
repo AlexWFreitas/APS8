@@ -10,6 +10,7 @@ Demonstração de CRUD e conceito de Sistema Distribuído através de comunicaç
 Usuários do sistema fazem relatos sobre incêndios.
 
 ## Existem dois usuários:
+* [ user - password ]
 * admin - admin -> Pode deletar e editar todos os relatos.
 * user - user -> Pode editar e deletar somente seus proprios relatos.
 
