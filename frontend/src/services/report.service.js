@@ -3,13 +3,13 @@ import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/reports/";
 
-const GetReports = () => {
+const getReports = () => {
   return axios.get(API_URL, { headers: authHeader() }
 
   );
 };
 
-const PostReport = (reportTitle, reportContent, location, idUser) => {
+const postReport = (reportTitle, reportContent, location, idUser) => {
 	return axios.post(API_URL, 
 		{ 
 			reportTitle,
@@ -23,7 +23,21 @@ const PostReport = (reportTitle, reportContent, location, idUser) => {
 	);
 };
 
-const GetReport = (id) => {
+const updateReport = (reportTitle, reportContent, location, idReport) => {
+	return axios.put(API_URL + `${idReport}`, 
+		{ 
+			reportTitle,
+			reportContent,
+			location,
+		},
+		{
+			headers: authHeader(),
+		}
+	);
+};
+
+
+const getReport = (id) => {
 	return axios.get(API_URL + `${id}`, 
 		{ 
 			headers: authHeader() 
@@ -32,8 +46,18 @@ const GetReport = (id) => {
 
 }
 
+const deleteReport = (id) => {
+	return axios.delete(API_URL + `${id}` ,
+		{
+			headers: authHeader()
+		}
+	);	
+}
+
 export default {
-  GetReports,
-  PostReport,
-  GetReport
+  getReports,
+  postReport,
+  getReport,
+  deleteReport,
+  updateReport,
 };

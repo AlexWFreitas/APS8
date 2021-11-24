@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { Form} from "react-bootstrap";
 
 const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -10,27 +11,18 @@ const Profile = () => {
   }
 
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>
-          <strong>{currentUser.username}</strong> Profile
-        </h3>
-      </header>
-      <p>
-        <strong>Full Name:</strong> {currentUser.fullName}
-      </p>
-      <p>
-        <strong>Id:</strong> {currentUser.id}
-      </p>
-      <p>
-        <strong>Email:</strong> {currentUser.email}
-      </p>
-      <strong>Roles Defined:</strong>
-      <ul>
-        {currentUser.roles &&
-          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-      </ul>
-    </div>
+    <>
+      <div class="card" style={{width: "28rem"}}>
+        <div class="card-body">
+          <h5 class="card-title">Profile Page</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">User - {currentUser.username}</li>
+          <li class="list-group-item">Name - {currentUser.fullName}</li>
+          <li class="list-group-item">Email - {currentUser.email}</li>
+        </ul>
+      </div>
+    </>
   );
 };
 

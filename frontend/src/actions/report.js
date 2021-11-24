@@ -55,7 +55,7 @@ export const getReport = (id) => (dispatch) => {
 };
 
 export const register = (reportTitle, reportContent, location, idUser) => (dispatch) => {
-	return ReportService.PostReport(reportTitle, reportContent, location, idUser).then(
+	return ReportService.postReport(reportTitle, reportContent, location, idUser).then(
 		(response) => {
 	
 			dispatch({
@@ -65,21 +65,19 @@ export const register = (reportTitle, reportContent, location, idUser) => (dispa
 	
 			return Promise.resolve();
 		},
-		(error) => {
-			
-			const message =
-			(error.response &&
-				error.response.data &&
-				error.response.data.message) ||
-			error.message ||
-			error.toString();
+	);	
+};
+
+export const editReport = (reportTitle, reportContent, location, idReport) => (dispatch) => {
+	return ReportService.updateReport(reportTitle, reportContent, location, idReport).then(
+		(response) => {
 	
 			dispatch({
 			type: SET_MESSAGE,
-			payload: message,
+			payload: response.data.message,
 			});
 	
-			return Promise.reject();
-		}
+			return Promise.resolve();
+		},
 	);	
 };

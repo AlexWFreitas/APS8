@@ -75,8 +75,14 @@ public class ReportController {
 
 	@PutMapping(value="{id}")	
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public Report updateReport(@PathVariable Long id, @RequestBody Report report) {
-		report.setId(id);
+	public Report updateReport(@PathVariable Long id, @RequestBody CreateReportRequest reportDTO) {
+
+		var report = reportRepository.findById(id).get();
+
+		report.setLocation(reportDTO.getLocation());
+		report.setReportMessage(reportDTO.getReportContent());
+		report.setReportTitle(reportDTO.getReportTitle());
+		
 		return reportRepository.save(report);
 	}
 
@@ -84,7 +90,7 @@ public class ReportController {
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> createReport(@Valid @RequestBody CreateReportRequest createReportRequest) {
 
-		// Retrieve User [ Creator ]
+		// Retrieve User [ Creator ])
 		var creator = userRepository.findById(createReportRequest.getIdUser());
 
 		// Create new Report

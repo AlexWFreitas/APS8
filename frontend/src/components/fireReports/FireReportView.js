@@ -35,7 +35,7 @@ const FireReportView = (props) => {
 
 	
 	useEffect(() => {
-		ReportService.GetReport(id).then(
+		ReportService.getReport(id).then(
 		  (response) => {
 			setReport(response.data);
 		  },

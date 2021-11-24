@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
+import { useLocation, useHistory } from "react-router-dom";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -9,7 +10,7 @@ import UserService from "../../services/user.service";
 
 import EventBus from "../../common/EventBus";
 
-import { register } from "../../actions/report";
+import { register, editReport } from "../../actions/report";
 
 const required = (value) => {
 	if (!value) {
@@ -21,7 +22,7 @@ const required = (value) => {
 	}
 };
 
-const InsertFireReport = () => {
+const FireReportEdit = (props) => {
 	
 	const [content, setContent] = useState("");
 
@@ -47,13 +48,17 @@ const InsertFireReport = () => {
 	  );
 	}, []);
 
+	const location = useLocation();
+
+	console.log(props);
+
 
 	const form = useRef();
 	const checkBtn = useRef();
 	const [idUser, setIdUser] = useState(useSelector((state) => state.auth.user.id));
-	const [location, setLocation] = useState("");
-	const [title, setTitle] = useState("");
-	const [reportContent, setReportContent] = useState("");
+	const [reportLocation, setReportLocation] = useState(props.location.state.report.location);
+	const [title, setTitle] = useState(props.location.state.report.reportTitle);
+	const [reportContent, setReportContent] = useState(props.location.state.report.reportMessage);
 	const [successful, setSuccessful] = useState(false);
 
 	const { message } = useSelector(state => state.message);
@@ -71,8 +76,10 @@ const InsertFireReport = () => {
 
 	const onChangeLocation = (e) => {
 		const location = e.target.value;
-		setLocation(location);
+		setReportLocation(location);
 	}
+	
+	const history = useHistory();
 
 	const handleRegister = (e) => {
 		e.preventDefault();
@@ -82,14 +89,11 @@ const InsertFireReport = () => {
 		form.current.validateAll();
 		
 		if (checkBtn.current.context._errors.length === 0) {
-		dispatch(register(title, reportContent, location, idUser))
+		dispatch(editReport(title, reportContent, reportLocation, props.location.state.report.id))
 			.then(() => {
-			setSuccessful(true);
-			})
-			.catch(() => {
-			setSuccessful(false);
-			});
-		}
+				history.push("/reports");				
+			}
+		)}
 	};
 
 	
@@ -144,7 +148,7 @@ const InsertFireReport = () => {
 					className="form-control"
 					name="location"
 					rows="3"
-					value={location}
+					value={reportLocation}
 					onChange={onChangeLocation}
 					validations={[required]}
 					/>
@@ -172,4 +176,4 @@ const InsertFireReport = () => {
 	);
 };
 
-export default InsertFireReport;
+export default FireReportEdit;

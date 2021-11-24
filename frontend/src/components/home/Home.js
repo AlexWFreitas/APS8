@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../services/user.service";
-import BackgroundImage from "../resources/images/bg.jpg";
+import UserService from "../../services/user.service";
+import BackgroundImage from "../../resources/images/bg.jpg";
 
 const Home = () => {
 

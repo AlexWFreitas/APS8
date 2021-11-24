@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
-import FireReportTable from "../../components/fire_reports/FireReportTable";
+import FireReportTable from "./FireReportTable";
 
 const FireReports = () => {
 
